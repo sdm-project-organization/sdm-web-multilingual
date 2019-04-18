@@ -8,36 +8,36 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import java.time.LocalDateTime;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Data
+//@Entity
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Data
 public abstract class DictCommonTable {
 
-    @Column(name="disp_nm")
-    private short displayName;
-
-    @Column(name="disp_ord")
-    private short displayOrder;
-
-    @Column(name="created_dt")
-    private LocalDateTime createdDate;
-
-    @Column(name="updated_dt")
-    private LocalDateTime updatedDate;
-
-    @Column(name="active_fl")
-    private byte activeFlag;
-
-    @Column(name="enable_fl")
-    private byte enableFlag;
-
-    @Column(name="writer")
-    private String writer;
-
-    @Column(name="editor")
-    private String editor;
-
-    @Column(name="desc")
-    private String desc;
+//    @Column(name="disp_nm")
+//    private short displayName;
+//
+//    @Column(name="disp_ord")
+//    private short displayOrder;
+//
+//    @Column(name="created_dt")
+//    private LocalDateTime createdDate;
+//
+//    @Column(name="updated_dt")
+//    private LocalDateTime updatedDate;
+//
+//    @Column(name="active_fl")
+//    private byte activeFlag;
+//
+//    @Column(name="enable_fl")
+//    private byte enableFlag;
+//
+//    @Column(name="writer")
+//    private String writer;
+//
+//    @Column(name="editor")
+//    private String editor;
+//
+//    @Column(name="desc")
+//    private String desc;
 
 }

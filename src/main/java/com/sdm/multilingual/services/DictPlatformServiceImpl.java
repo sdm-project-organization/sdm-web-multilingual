@@ -1,72 +1,100 @@
 package com.sdm.multilingual.services;
 
+import com.sdm.multilingual.constants.ActiveFlag;
+import com.sdm.multilingual.constants.EnableFlag;
 import com.sdm.multilingual.models.tables.DictCommonTable;
+import com.sdm.multilingual.models.tables.DictPlatformTable;
+import com.sdm.multilingual.repositorys.DictPlatformRepository;
 import com.sdm.multilingual.services.cores.DictCommonService;
 import com.sdm.multilingual.services.cores.DictPlatformService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DictPlatformServiceImpl implements DictPlatformService, DictCommonService {
 
+    @Autowired
+    DictPlatformRepository dictPlatformRepository;
+
+
     @Override
-    public int count() {
-        return 0;
+    public long count() {
+        return dictPlatformRepository.count();
     }
 
     @Override
-    public int countAll() {
-        return 0;
+    public DictPlatformTable findBySequence(short sequence) {
+        return dictPlatformRepository.findByPlatformSequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
     }
 
     @Override
-    public DictCommonTable findBySequence(int sequence, byte enableFlag) {
+    public DictPlatformTable findByDisplayName(String displayName) {
+        return dictPlatformRepository.findByDisplayNameAndEnableFlag(displayName, EnableFlag.Y.getValue());
+    }
+
+    @Override
+    public Page<DictPlatformTable> findAllByPage(int offset, int limit) {
+        /*return dictPlatformRepository.findAllByEnableFlag(EnableFlag.Y.getValue());*/
         return null;
     }
 
     @Override
-    public DictCommonTable findByDisplayName(String displayName, byte enableFlag) {
-        return null;
+    public DictPlatformTable save(DictPlatformTable dictPlatformTable) {
+        return dictPlatformRepository.save(dictPlatformTable);
     }
 
     @Override
-    public Page<DictCommonTable> findAllByPage(int offset, int limit, byte enableFlag) {
-        return null;
+    public List<DictPlatformTable> saveAll(List<DictPlatformTable> listOfDictPlatformTable) {
+        return dictPlatformRepository.saveAll(listOfDictPlatformTable);
     }
 
     @Override
-    public DictCommonTable save(DictCommonTable DictCommonTable) {
-        return null;
+    public DictPlatformTable update(DictPlatformTable dictPlatformTable) {
+        dictPlatformRepository.flush();
+        return dictPlatformTable;
     }
 
     @Override
-    public List<DictCommonTable> saveAll(List<DictCommonTable> listOfDictCommonTable) {
-        return null;
+    public DictPlatformTable active(short platformSequence) {
+        DictPlatformTable dictPlatformTable =
+                dictPlatformRepository.findByPlatformSequenceAndActiveFlagAndEnableFlag(
+                        platformSequence, ActiveFlag.N.getValue(), EnableFlag.Y.getValue());
+        dictPlatformTable.setActiveFlag(ActiveFlag.Y.getValue());
+        dictPlatformRepository.flush();
+        return dictPlatformTable;
     }
 
     @Override
-    public void update(DictCommonTable DictCommonTable) {
-
+    public DictPlatformTable unactive(short platformSequence) {
+        DictPlatformTable dictPlatformTable =
+                dictPlatformRepository.findByPlatformSequenceAndActiveFlagAndEnableFlag(
+                        platformSequence, ActiveFlag.Y.getValue(), EnableFlag.Y.getValue());
+        dictPlatformTable.setActiveFlag(ActiveFlag.N.getValue());
+        dictPlatformRepository.flush();
+        return dictPlatformTable;
     }
 
     @Override
-    public void active(int platformSequence) {
-
+    public DictPlatformTable enable(short platformSequence) {
+        DictPlatformTable dictPlatformTable =
+                dictPlatformRepository.findByPlatformSequenceAndEnableFlag(
+                        platformSequence, EnableFlag.N.getValue());
+        dictPlatformTable.setEnableFlag(EnableFlag.Y.getValue());
+        dictPlatformRepository.flush();
+        return dictPlatformTable;
     }
 
     @Override
-    public void unactive(int platformSequence) {
-
-    }
-
-    @Override
-    public void enable(int platformSequence) {
-
-    }
-
-    @Override
-    public void unenable(int platformSequence) {
-
+    public DictPlatformTable unenable(short platformSequence) {
+        DictPlatformTable dictPlatformTable =
+                dictPlatformRepository.findByPlatformSequenceAndEnableFlag(
+                        platformSequence, EnableFlag.Y.getValue());
+        dictPlatformTable.setEnableFlag(EnableFlag.N.getValue());
+        dictPlatformRepository.flush();
+        return dictPlatformTable;
     }
 
 }

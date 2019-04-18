@@ -9,39 +9,47 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sdm</groupId>
-    <artifactId>multilingual</artifactId>
+    <artifactId>dict</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>multilingual</name>
+    <name>dict</name>
     <description>multilingual API Web Application</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <mysql.version>8.0.15</mysql.version>
     </properties>
 
     <dependencies>
 
-        <!-- Cache -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
-
-        <!-- Validation -->
+        <!-- Spring Boot : Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Web -->
+        <!-- Spring Boot : Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Session -->
+        <!-- Spring Boot : JPA -->
         <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-core</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Spring Boot : JDBC Driver -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId> mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
 
         <!-- Lombok -->
@@ -51,7 +59,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Test -->
+        <!-- Spring Boot : Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -65,23 +73,24 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring data JPA -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
+        <!-- Apache Commons-DBCP -->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.commons</groupId>-->
+            <!--<artifactId>commons-dbcp2</artifactId>-->
+            <!--<version>2.4.0</version>-->
+        <!--</dependency>-->
 
-        <!-- hibernate cores -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
+        <!-- Session -->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.session</groupId>-->
+        <!--<artifactId>spring-session-core</artifactId>-->
+        <!--</dependency>-->
 
-        <!-- hibernate entity-manager -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entityManager</artifactId>
-        </dependency>
+        <!-- Spring Boot : Cache -->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-cache</artifactId>-->
+        <!--</dependency>-->
 
     </dependencies>
 

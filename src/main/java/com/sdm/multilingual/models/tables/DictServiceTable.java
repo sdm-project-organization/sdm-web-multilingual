@@ -5,9 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name="DICT_SERVICE_TB")
-@Data
+//@Entity
+//@Table(name="DICT_SERVICE_TB")
+//@Data
 public class DictServiceTable extends DictCommonTable {
 
     @Id
