@@ -6,14 +6,33 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="DICT_PLATFORM_TB")
+@Table(name="DICT_GROUP_TB")
 @Data
-public class DictPlatformTable {
+public class Group {
 
     @Id
-    @Column(name="platform_sq")
+    @Column(name="group_sq")
     /*@GeneratedValue(strategy=GenerationType.AUTO)*/
-    private short platformSequence;
+    private long groupSequence;
+
+    @Column(name="service_sq")
+    private short serviceSequence;
+
+    /*@ManyToOne
+    @Column(name = "service_sq")
+    private Service service;*/
+
+    @Column(name="group_cd")
+    private String groupCode;
+
+    @Column(name="group_path")
+    private String groupPath;
+
+    @Column(name="depth")
+    private short depth;
+
+    // =====================================================
+    // Common
 
     @Column(name="disp_ord")
     private short displayOrder;
@@ -41,5 +60,7 @@ public class DictPlatformTable {
 
     @Column(name="desc")
     private String desc;
+
+    // =====================================================
 
 }

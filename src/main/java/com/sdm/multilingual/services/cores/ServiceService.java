@@ -1,4 +1,4 @@
 package com.sdm.multilingual.services.cores;
 
-public interface DictServiceService {
+public interface ServiceService {
 }

@@ -1,39 +1,33 @@
 package com.sdm.multilingual.controllers;
 
-import com.sdm.multilingual.models.tables.DictPlatformTable;
-import com.sdm.multilingual.services.DictPlatformServiceImpl;
+import com.sdm.multilingual.models.tables.Platform;
+import com.sdm.multilingual.services.PlatformServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
-@RequestMapping("/api/platform")
+@RequestMapping("/api/platforms")
 public class PlatformController {
 
     @Autowired
-    DictPlatformServiceImpl dictPlatformService;
+    PlatformServiceImpl platformService;
 
 
     @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.GET)
-    public DictPlatformTable getPlatformBySequence(
+    public Platform getPlatformBySequence(
             @PathVariable short sequence) throws Exception {
-        return (DictPlatformTable) dictPlatformService.findBySequence(sequence);
+        return (Platform) platformService.findBySequence(sequence);
     }
 
 
     @RequestMapping(path = "/name/{name}", method = RequestMethod.GET)
-    public DictPlatformTable getPlatformBySequence(
+    public Platform getPlatformBySequence(
             @PathVariable String name) {
-        return (DictPlatformTable) dictPlatformService.findByDisplayName(name);
+        return (Platform) platformService.findByDisplayName(name);
     }
 
     /*@RequestMapping(method = RequestMethod.POST)
-    public DictPlatformTable savePlatform(
-            @Validated @RequestBody DictPlatformTable dictPlatformTable) {
+    public Platform savePlatform(@Validated @RequestBody Platform dictPlatformTable) {
         dictPlatformService.save(dictPlatformTable);
 
         URI resourceUri = uriBuilder // == RES URI ==
@@ -42,7 +36,7 @@ public class PlatformController {
                 .encode()
                 .toUri();
 
-        return dictPlatformTable;
+        return ResponseEntity.created(URI.create(resourceUri)).build();;
     }*/
 
 }

@@ -1,14 +1,11 @@
 package com.sdm.multilingual.models.tables;
 
-import lombok.Data;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 //@Entity
 //@Table(name="DICT_SERVICE_TB")
 //@Data
-public class DictServiceTable extends DictCommonTable {
+public class Service extends CommonTable {
 
     @Id
     @Column(name="service_sq")

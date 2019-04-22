@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 //@Entity
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 //@Data
-public abstract class DictCommonTable {
+public abstract class CommonTable {
 
 //    @Column(name="disp_nm")
 //    private short displayName;
