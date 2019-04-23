@@ -9,19 +9,19 @@ public interface PlatformService {
 
     long count();
 
-    Platform findBySequence(short sequence);
+    Platform findBySequence(int sequence);
 
     Platform findByDisplayName(String displayName);
 
     Platform update(Platform platform);
 
-    Platform active(short platformSequence);
+    Platform active(int platformSequence);
 
-    Platform unactive(short platformSequence);
+    Platform unactive(int platformSequence);
 
-    Platform enable(short platformSequence);
+    Platform enable(int platformSequence);
 
-    Platform unenable(short platformSequence);
+    Platform unenable(int platformSequence);
 
     Page<Platform> findAllByPage(int offset, int limit);
 

@@ -14,7 +14,7 @@ public interface PlatformRepository extends JpaRepository<Platform, String> {
     // Common
 
     // find by sequence and enableFlag
-    Platform findByPlatformSequenceAndEnableFlag(short platformSequence, byte enableFlag);
+    Platform findByPlatformSequenceAndEnableFlag(int platformSequence, byte enableFlag);
 
     // find by name and enableFlag
     Platform findByDisplayNameAndEnableFlag(String displayName, byte enableFlag);

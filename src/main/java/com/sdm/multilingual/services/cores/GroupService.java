@@ -2,24 +2,16 @@ package com.sdm.multilingual.services.cores;
 
 import com.sdm.multilingual.models.tables.Group;
 
-import java.util.List;
-
-public interface GroupService extends GroupFindService, GroupUpdateService {
+public interface GroupService extends GroupReadService, GroupWriteService {
 
     long count();
 
-    Group update(Group group);
+    Group active(int sequence);
 
-    Group active(short sequence);
+    Group unactive(int sequence);
 
-    Group unactive(short sequence);
+    Group enable(int sequence);
 
-    Group enable(short sequence);
-
-    Group unenable(short sequence);
-
-    Group save(Group group);
-
-    List<Group> saveAll(List<Group> listOfGroup);
+    Group unenable(int sequence);
 
 }

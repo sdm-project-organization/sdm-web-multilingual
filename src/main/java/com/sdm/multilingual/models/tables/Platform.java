@@ -13,13 +13,13 @@ public class Platform {
     @Id
     @Column(name="platform_sq")
     /*@GeneratedValue(strategy=GenerationType.AUTO)*/
-    private short platformSequence;
+    private int platformSequence;
 
     // =====================================================
     // Common
 
     @Column(name="disp_ord")
-    private short displayOrder;
+    private int displayOrder;
 
     @Column(name="disp_nm")
     private String displayName;
@@ -42,7 +42,7 @@ public class Platform {
     @Column(name="editor")
     private String editor;
 
-    @Column(name="desc")
+    @Column(name="`desc`")
     private String desc;
 
     // =====================================================

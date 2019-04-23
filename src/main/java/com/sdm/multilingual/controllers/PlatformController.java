@@ -12,10 +12,9 @@ public class PlatformController {
     @Autowired
     PlatformServiceImpl platformService;
 
-
     @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.GET)
     public Platform getPlatformBySequence(
-            @PathVariable short sequence) throws Exception {
+            @PathVariable int sequence) throws Exception {
         return (Platform) platformService.findBySequence(sequence);
     }
 

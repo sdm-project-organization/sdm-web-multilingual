@@ -9,10 +9,10 @@ public class Service extends CommonTable {
 
     @Id
     @Column(name="service_sq")
-    private short serviceSequence;
+    private int serviceSequence;
 
     @Column(name="platform_sq")
-    private short platformSequence;
+    private int platformSequence;
 
     @Column(name="export_type")
     private byte exportType;

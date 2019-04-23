@@ -5,10 +5,10 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-public interface GroupFindService {
+public interface GroupReadService {
 
     // Master
-    Group findBySequence(long sequence);
+    Group findBySequence(int sequence);
 
     // Master
     List<Group> findAllByDisplayName(String displayName);
@@ -17,12 +17,12 @@ public interface GroupFindService {
     Page<Group> findAllByPage(int offset, int limit);
 
     // Open
-    Page<Group> findAllByServiceIdAndDepth(long serviceId, int depth);
+    List<Group> findAllByServiceSequenceAndDepth(int serviceSequence, int depth);
 
     // Open
-    Page<Group> findAllByServiceIdAndGroupPath(long serviceId, String groupPath);
+    List<Group> findAllByServiceSequenceAndGroupPath(int serviceSequence, String groupPath);
 
     // Open
-    Page<Group> findAllByServiceIdAndDisplayName(long serviceId, String displayName);
+    List<Group> findAllByServiceSequenceAndDisplayName(int serviceSequence, String displayName);
 
 }

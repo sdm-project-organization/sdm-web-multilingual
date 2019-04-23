@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 public abstract class CommonTable {
 
 //    @Column(name="disp_nm")
-//    private short displayName;
+//    private int displayName;
 //
 //    @Column(name="disp_ord")
-//    private short displayOrder;
+//    private int displayOrder;
 //
 //    @Column(name="created_dt")
 //    private LocalDateTime createdDate;
@@ -37,7 +37,7 @@ public abstract class CommonTable {
 //    @Column(name="editor")
 //    private String editor;
 //
-//    @Column(name="desc")
+//    @Column(name="`desc`")
 //    private String desc;
 
 }

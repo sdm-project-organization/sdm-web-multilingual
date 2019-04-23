@@ -24,7 +24,7 @@ public class PlatformServiceImpl implements PlatformService, CommonService {
     }
 
     @Override
-    public Platform findBySequence(short sequence) {
+    public Platform findBySequence(int sequence) {
         return platformRepository.findByPlatformSequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
     }
 
@@ -56,7 +56,7 @@ public class PlatformServiceImpl implements PlatformService, CommonService {
     }
 
     @Override
-    public Platform active(short platformSequence) {
+    public Platform active(int platformSequence) {
         Platform platform =
                 platformRepository.findByPlatformSequenceAndActiveFlagAndEnableFlag(
                         platformSequence, ActiveFlag.N.getValue(), EnableFlag.Y.getValue());
@@ -66,7 +66,7 @@ public class PlatformServiceImpl implements PlatformService, CommonService {
     }
 
     @Override
-    public Platform unactive(short platformSequence) {
+    public Platform unactive(int platformSequence) {
         Platform platform =
                 platformRepository.findByPlatformSequenceAndActiveFlagAndEnableFlag(
                         platformSequence, ActiveFlag.Y.getValue(), EnableFlag.Y.getValue());
@@ -76,7 +76,7 @@ public class PlatformServiceImpl implements PlatformService, CommonService {
     }
 
     @Override
-    public Platform enable(short platformSequence) {
+    public Platform enable(int platformSequence) {
         Platform platform =
                 platformRepository.findByPlatformSequenceAndEnableFlag(
                         platformSequence, EnableFlag.N.getValue());
@@ -86,7 +86,7 @@ public class PlatformServiceImpl implements PlatformService, CommonService {
     }
 
     @Override
-    public Platform unenable(short platformSequence) {
+    public Platform unenable(int platformSequence) {
         Platform platform =
                 platformRepository.findByPlatformSequenceAndEnableFlag(
                         platformSequence, EnableFlag.Y.getValue());
