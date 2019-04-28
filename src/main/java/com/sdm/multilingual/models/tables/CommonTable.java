@@ -13,31 +13,31 @@ import java.time.LocalDateTime;
 //@Data
 public abstract class CommonTable {
 
-//    @Column(name="disp_nm")
+//    @Column(name = "disp_nm")
 //    private int displayName;
 //
-//    @Column(name="disp_ord")
+//    @Column(name = "disp_ord")
 //    private int displayOrder;
 //
-//    @Column(name="created_dt")
+//    @Column(name = "created_dt")
 //    private LocalDateTime createdDate;
 //
-//    @Column(name="updated_dt")
+//    @Column(name = "updated_dt")
 //    private LocalDateTime updatedDate;
 //
-//    @Column(name="active_fl")
+//    @Column(name = "active_fl")
 //    private byte activeFlag;
 //
-//    @Column(name="enable_fl")
+//    @Column(name = "enable_fl")
 //    private byte enableFlag;
 //
-//    @Column(name="writer")
+//    @Column(name = "writer")
 //    private String writer;
 //
-//    @Column(name="editor")
+//    @Column(name = "editor")
 //    private String editor;
 //
-//    @Column(name="`desc`")
+//    @Column(name = "`desc`")
 //    private String desc;
 
 }

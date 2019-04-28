@@ -13,64 +13,63 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="DICT_GROUP_TB")
+@Table(name = "DICT_TREE_TB")
 @EntityListeners(value = { AuditingEntityListener.class })
 @Data
-public class Group {
+public class Tree {
 
     @Id
-    @Column(name="group_sq", updatable = false, nullable = false)
-    /*@GeneratedValue(strategy=GenerationType.AUTO)*/
-    private int groupSequence;
+    @Column(name = "tree_sq", updatable = false, nullable = false)
+    private int sequence;
 
-    @Column(name="service_sq", nullable = false)
-    private int serviceSequence;
+    @Column(name = "partition_sq", nullable = false)
+    private int partitionSequence;
 
     /*@ManyToOne
     @Column(name = "service_sq")
-    private Service service;*/
+    private Partition service;*/
 
-    @Column(name="group_cd")
-    private String groupCode;
+    @Column(name = "tree_cd")
+    private String treeCode;
 
-    @Column(name="group_path")
-    private String groupPath;
+    @Column(name = "tree_path")
+    private String treePath;
 
-    @Column(name="depth")
-    private int depth;
+    @Column(name = "tree_level")
+    private int treeLevel;
 
     // =====================================================
     // Common
 
-    @Column(name="disp_ord")
+    @Column(name = "disp_ord")
     private int displayOrder;
 
-    @Column(name="disp_nm")
+    @Column(name = "disp_nm")
     private String displayName;
 
-    @Column(name="`desc`")
+    @Column(name = "`desc`")
     private String desc;
 
-    @Column(name="active_fl", nullable = false)
+    @Column(name = "active_fl", nullable = false)
     private byte activeFlag = ActiveFlag.Y.getValue();
 
-    @Column(name="enable_fl", nullable = false)
+    @Column(name = "enable_fl", nullable = false)
     private byte enableFlag = EnableFlag.Y.getValue();
 
     @CreatedDate
-    @Column(name="created_dt", updatable = false)
+    @Column(name = "created_dt", updatable = false)
     private LocalDateTime createdDate;
 
     @LastModifiedDate
-    @Column(name="updated_dt")
+    @Column(name = "updated_dt")
     private LocalDateTime updatedDate;
 
     @CreatedBy
-    @Column(name="writer")
+    @Column(name = "writer")
     private String writer;
 
     @LastModifiedBy
-    @Column(name="editor")
+    @Column(name = "editor")
     private String editor;
 
     // =====================================================

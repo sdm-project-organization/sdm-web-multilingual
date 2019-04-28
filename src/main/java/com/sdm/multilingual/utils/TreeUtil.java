@@ -3,7 +3,7 @@ package com.sdm.multilingual.utils;
 import java.util.Arrays;
 import java.util.List;
 
-public class GroupUtil {
+public class TreeUtil {
 
     public static String compressPath(List<String> listOfCode) {
         return listOfCode.stream().reduce((a, b) -> a + StringUtil.DELIMETER_OF_PATH + b).get();
