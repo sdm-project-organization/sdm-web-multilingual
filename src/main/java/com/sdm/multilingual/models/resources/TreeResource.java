@@ -4,6 +4,7 @@ import com.sdm.multilingual.constants.ActiveFlag;
 import com.sdm.multilingual.constants.EnableFlag;
 import com.sdm.multilingual.models.tables.Partition;
 import com.sdm.multilingual.models.tables.Tree;
+import com.sdm.multilingual.utils.StringUtil;
 import com.sdm.multilingual.utils.TreeUtil;
 import lombok.Data;
 
@@ -25,10 +26,12 @@ public class TreeResource extends CommonResource<Tree, TreeResource> implements 
         setPartitionSequence(1); // TODO TEMP
 
         // 1. null 체크
-        if(getTreeCode() == null)
+        if(getTreeCode() == null || getTreeCode() == "")
             throw new Exception();
 
-        // TODO 2. 문자열 체크
+        // 2. 문자열 체크
+        if(getTreeCode().contains(String.valueOf(StringUtil.DELIMETER_OF_PATH)))
+            throw new Exception();
 
         listOfCode.add(getTreeCode());
         setTreePath(TreeUtil.compressPath(listOfCode));
