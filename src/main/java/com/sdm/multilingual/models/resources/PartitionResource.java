@@ -5,11 +5,10 @@ import com.sdm.multilingual.constants.EnableFlag;
 import com.sdm.multilingual.models.tables.Partition;
 import lombok.Data;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.io.Serializable;
 
 @Data
-public class PartitionResource extends CommonResource<Partition, PartitionResource> {
+public class PartitionResource extends CommonResource<Partition, PartitionResource> implements Serializable {
 
     // * Boxed Class 필수
     private Integer serviceSequence;
@@ -18,6 +17,7 @@ public class PartitionResource extends CommonResource<Partition, PartitionResour
 
     @Override
     public PartitionResource toInsert() {
+        setSequence(CommonResource.INIT_SEQUENCE);
         setServiceSequence(1); // TODO AUTOMATIC
         setActiveFlag(ActiveFlag.Y.getValue());
         setEnableFlag(EnableFlag.Y.getValue());
@@ -33,6 +33,7 @@ public class PartitionResource extends CommonResource<Partition, PartitionResour
     @Override
     public Partition toEntity() {
         Partition partition = new Partition();
+        partition.setSequence(this.getSequence());
         partition.setServiceSequence(this.getServiceSequence());
         partition.setExportType(this.getExportType());
         partition.setExportUrl(this.getExportUrl());

@@ -2,6 +2,7 @@ package com.sdm.multilingual.models.resources;
 
 import com.sdm.multilingual.constants.ActiveFlag;
 import com.sdm.multilingual.constants.EnableFlag;
+import com.sdm.multilingual.models.tables.Partition;
 import com.sdm.multilingual.models.tables.Tree;
 import com.sdm.multilingual.utils.TreeUtil;
 import lombok.Data;
@@ -10,24 +11,25 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class TreeResource implements Serializable {
+public class TreeResource extends CommonResource<Tree, TreeResource> implements Serializable {
 
-    private int treeSequence;
     private int partitionSequence;
     private String treeCode;
     private String treePath;
     private int treeLevel;
-    private int displayOrder;
-    private String displayName;
-    private String desc;
-    private byte activeFlag;
-    private byte enableFlag;
-
     private List<String> listOfCode;
 
-    public TreeResource toInsert() {
-        setTreeSequence(0);
+    @Override
+    public TreeResource toInsert() throws Exception {
+        setSequence(CommonResource.INIT_SEQUENCE);
         setPartitionSequence(1); // TODO TEMP
+
+        // 1. null 체크
+        if(getTreeCode() == null)
+            throw new Exception();
+
+        // TODO 2. 문자열 체크
+
         listOfCode.add(getTreeCode());
         setTreePath(TreeUtil.compressPath(listOfCode));
         setTreeLevel(listOfCode.size());
@@ -36,17 +38,26 @@ public class TreeResource implements Serializable {
         return this;
     }
 
+    @Override
+    public TreeResource toUpdate() {
+        return null;
+    }
+
+    @Override
     public Tree toEntity() {
         Tree tree = new Tree();
-        tree.setPartitionSequence(partitionSequence); // TODO TEMP
-        tree.setTreeCode(treeCode);
-        tree.setTreePath(treePath);
-        tree.setTreeLevel(treeLevel);
-        tree.setDisplayOrder(displayOrder);
-        tree.setDisplayName(displayName);
-        tree.setDesc(desc);
-        tree.setActiveFlag(activeFlag);
-        tree.setEnableFlag(enableFlag);
+        tree.setSequence(this.getSequence());
+        tree.setPartitionSequence(this.getPartitionSequence());
+        tree.setTreeCode(this.getTreeCode());
+        tree.setTreePath(this.getTreePath());
+        tree.setTreeLevel(this.getTreeLevel());
+        tree.setDisplayOrder(this.getDisplayOrder());
+        tree.setDisplayName(this.getDisplayName());
+        tree.setDesc(this.getDesc());
+        tree.setActiveFlag(this.getActiveFlag());
+        tree.setEnableFlag(this.getEnableFlag());
+        System.out.println(tree.toString()); // TODO LOG
         return tree;
     }
+
 }

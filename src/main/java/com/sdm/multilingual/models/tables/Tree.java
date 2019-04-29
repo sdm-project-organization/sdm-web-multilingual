@@ -18,31 +18,34 @@ import java.time.LocalDateTime;
 @Data
 public class Tree {
 
+    public static final String[] CANNOT_UPDATED_FIELDS = new String[] { "sequence", "createdDate", "writer", "updatedDate", "editor" };
+    public static final String[] CANNOT_NULLABLE_FIELDS = new String[] { "partitionSequence", "treeCode" };
+
     @Id
     @Column(name = "tree_sq", updatable = false, nullable = false)
-    private int sequence;
+    private Integer sequence;
 
     @Column(name = "partition_sq", nullable = false)
-    private int partitionSequence;
+    private Integer partitionSequence;
 
     /*@ManyToOne
     @Column(name = "service_sq")
     private Partition service;*/
 
-    @Column(name = "tree_cd")
+    @Column(name = "tree_cd", nullable = false)
     private String treeCode;
 
     @Column(name = "tree_path")
     private String treePath;
 
-    @Column(name = "tree_level")
-    private int treeLevel;
+    @Column(name = "tree_level", nullable = false)
+    private Integer treeLevel;
 
     // =====================================================
     // Common
 
     @Column(name = "disp_ord")
-    private int displayOrder;
+    private Integer displayOrder;
 
     @Column(name = "disp_nm")
     private String displayName;
@@ -51,10 +54,10 @@ public class Tree {
     private String desc;
 
     @Column(name = "active_fl", nullable = false)
-    private byte activeFlag = ActiveFlag.Y.getValue();
+    private Byte activeFlag = ActiveFlag.Y.getValue();
 
     @Column(name = "enable_fl", nullable = false)
-    private byte enableFlag = EnableFlag.Y.getValue();
+    private Byte enableFlag = EnableFlag.Y.getValue();
 
     @CreatedDate
     @Column(name = "created_dt", updatable = false)

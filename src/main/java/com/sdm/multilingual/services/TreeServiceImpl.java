@@ -11,6 +11,8 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -26,14 +28,12 @@ public class TreeServiceImpl implements TreeService {
 
     @Override
     public Tree findBySequence(int sequence) {
-        return treeRepository.findBySequenceAndEnableFlag(
-                sequence,
-                EnableFlag.Y.getValue());
+        return treeRepository.findBySequence( sequence );
     }
 
     @Override
     public Tree findBySequenceAndEnableFlag(int sequence, byte enableFlag) {
-        return null;
+        return treeRepository.findBySequenceAndEnableFlag( sequence, enableFlag );
     }
 
     @Override
@@ -42,15 +42,13 @@ public class TreeServiceImpl implements TreeService {
     }
 
     @Override
-    public List<Tree> findAllByDisplayName(String displayName) {
-        return treeRepository.findAllByDisplayNameAndEnableFlag(
-                displayName,
-                EnableFlag.Y.getValue());
+    public List<Tree> findAllByDisplayName( String displayName ) {
+        return treeRepository.findAllByDisplayName( displayName );
     }
 
     @Override
     public List<Tree> findAllByDisplayNameAndEnableFlag(String displayName, byte enableFlag) {
-        return null;
+        return treeRepository.findAllByDisplayNameAndEnableFlag( displayName, EnableFlag.Y.getValue() );
     }
 
     @Override
@@ -59,28 +57,28 @@ public class TreeServiceImpl implements TreeService {
     }
 
     @Override
-    public List<Tree> findAllByPartitionSequenceAndDisplayName(int serviceSequence, String displayName) {
+    public List<Tree> findAllByPartitionSequenceAndDisplayNameAndEnableFlag( int partitionSequence, String displayName, byte enableFlag ) {
         return treeRepository.findAllByPartitionSequenceAndDisplayNameAndEnableFlag(
-                serviceSequence,
-                displayName,
-                EnableFlag.Y.getValue());
+                partitionSequence, displayName, EnableFlag.Y.getValue());
+    }
+
+
+    @Override
+    public Tree findByPartitionSequenceAndEqualTreePathAndEnableFlag( int partitionSequence, String treePath, byte enableFlag ) {
+        return treeRepository.findByPartitionSequenceAndTreePathAndEnableFlag(
+                partitionSequence, treePath, EnableFlag.Y.getValue());
     }
 
     @Override
-    public List<Tree> findAllByPartitionSequenceAndTreePath(int serviceSequence, String treePath) {
-        return treeRepository.findAllByPartitionSequenceAndTreeLevelAndTreePathStartingWithAndEnableFlag(
-                serviceSequence,
-                TreeUtil.dividePath(treePath).size(),
-                treePath,
-                EnableFlag.Y.getValue());
+    public List<Tree> findAllByPartitionSequenceAndLessThanTreePathAndEnableFlag( int partitionSequence, String treePath, byte enableFlag ) {
+        return treeRepository.findAllByPartitionSequenceAndTreePathStartingWithAndEnableFlag(
+                partitionSequence, treePath, EnableFlag.Y.getValue());
     }
 
     @Override
-    public List<Tree> findAllByPartitionSequenceAndTreeLevel(int serviceSequence, int treeLevel) {
-        return treeRepository.findAllByPartitionSequenceAndTreeLevelAndEnableFlag(
-                serviceSequence,
-                treeLevel,
-                EnableFlag.Y.getValue());
+    public List<Tree> findAllByPartitionSequenceAndGreaterThanTreePathAndEnableFlag( int partitionSequence, String treePath, byte enableFlag ) {
+        return treeRepository.findAllByPartitionSequenceAndTreePathInAndEnableFlag(
+                partitionSequence, TreeUtil.getAllGreaterThanTreePath(treePath), EnableFlag.Y.getValue());
     }
 
     @Override
@@ -89,8 +87,24 @@ public class TreeServiceImpl implements TreeService {
     }
 
     @Override
-    public Tree save(Tree tree) {
-        // TODO 1.중복체크 2.연결고리
+    public Tree save(Tree tree) throws Exception {
+        // 1.중복체크
+        Tree equalTree = findByPartitionSequenceAndEqualTreePathAndEnableFlag(
+                tree.getPartitionSequence(), tree.getTreePath(), EnableFlag.Y.getValue());
+
+        if(equalTree != null)
+            throw new Exception(); // TODO
+
+        // 2.연결고리체크
+        List<Tree> greaterThanTrees = findAllByPartitionSequenceAndGreaterThanTreePathAndEnableFlag(
+                tree.getPartitionSequence(), tree.getTreePath(), EnableFlag.Y.getValue());
+
+        /*Tree greaterThanTrees = findByPartitionSequenceAndEqualTreePathAndEnableFlag(
+                tree.getPartitionSequence(), TreeUtil.getNextGreaterThanTreePath(tree.getTreePath()), EnableFlag.Y.getValue());*/
+
+        if(greaterThanTrees.size() != tree.getTreeLevel() - 1)
+            throw new Exception(); // TODO
+
         return treeRepository.save(tree);
     }
 

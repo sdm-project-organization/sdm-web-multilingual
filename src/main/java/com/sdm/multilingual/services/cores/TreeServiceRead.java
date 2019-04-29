@@ -7,10 +7,12 @@ import java.util.List;
 
 public interface TreeServiceRead {
 
-    List<Tree> findAllByPartitionSequenceAndTreeLevel(int partitionSequence, int treeLevel);
+    List<Tree> findAllByPartitionSequenceAndDisplayNameAndEnableFlag(int partitionSequence, String displayName, byte enableFlag);
 
-    List<Tree> findAllByPartitionSequenceAndTreePath(int partitionSequence, String treePath);
+    Tree findByPartitionSequenceAndEqualTreePathAndEnableFlag(int partitionSequence, String treePath, byte enableFlag);
 
-    List<Tree> findAllByPartitionSequenceAndDisplayName(int partitionSequence, String displayName);
+    List<Tree> findAllByPartitionSequenceAndLessThanTreePathAndEnableFlag(int partitionSequence, String treePath, byte enableFlag);
+
+    List<Tree> findAllByPartitionSequenceAndGreaterThanTreePathAndEnableFlag(int partitionSequence, String treePath, byte enableFlag);
 
 }

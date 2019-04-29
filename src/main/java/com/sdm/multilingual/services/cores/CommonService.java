@@ -29,7 +29,7 @@ public interface CommonService<T> {
 
     // save
 
-    T save(T tree);
+    T save(T tree) throws Exception;
 
     List<T> saveAll(List<T> list);
 

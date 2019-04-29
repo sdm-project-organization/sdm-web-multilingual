@@ -55,7 +55,6 @@ public class PartitionController {
     public void updateGroupBySequence(
             @PathVariable int sequence,
             @Validated @RequestBody PartitionResource partitionResource) throws Exception {
-        System.out.println(sequence);
         partitionService.updateBySequence(sequence, partitionResource.toUpdate().toEntity());
     }
 

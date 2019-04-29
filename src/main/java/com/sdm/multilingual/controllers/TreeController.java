@@ -1,5 +1,7 @@
 package com.sdm.multilingual.controllers;
 
+import com.sdm.multilingual.constants.EnableFlag;
+import com.sdm.multilingual.models.resources.PartitionResource;
 import com.sdm.multilingual.models.resources.TreeResource;
 import com.sdm.multilingual.models.tables.Tree;
 import com.sdm.multilingual.services.TreeServiceImpl;
@@ -22,58 +24,42 @@ public class TreeController {
     @Autowired
     TreeServiceImpl treeService;
 
-    // MasterLevel
     @RequestMapping(path="count", method = RequestMethod.GET)
     public long getTreeCount() {
         return treeService.count();
     }
 
-    // MasterLevel
     @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.GET)
-    public Tree getTreeBySequence(
-            @PathVariable int sequence) throws Exception {
-        return treeService.findBySequence(sequence);
+    public Tree getTreeBySequence( @PathVariable int sequence ) throws Exception {
+        return treeService.findBySequenceAndEnableFlag( sequence, EnableFlag.Y.getValue() );
     }
 
-    // MasterLevel - 이름 조회
     @RequestMapping(path = "/name/{name}", method = RequestMethod.GET)
     public List<Tree> getTreeByDisplayName(
             @PathVariable String name) throws Exception {
-        return treeService.findAllByDisplayName(name);
+        return treeService.findAllByDisplayNameAndEnableFlag( name, EnableFlag.Y.getValue() );
     }
 
-    // BasicLevel - 서비스 ID + 이름 조회
-    @RequestMapping(path = "/name/{name}/serviceid/{serviceSequence}", method = RequestMethod.GET)
+    @RequestMapping(path = "/partitionid/{partitionid}/name/{name}", method = RequestMethod.GET)
     public List<Tree> getTreeBySerivceSequenceAndDisplayName(
-            @PathVariable int serviceSequence,
+            @PathVariable int partitionid,
             @PathVariable String name) throws Exception {
-        return treeService.findAllByPartitionSequenceAndDisplayName(serviceSequence, name);
+        return treeService.findAllByPartitionSequenceAndDisplayNameAndEnableFlag( partitionid, name, EnableFlag.Y.getValue() );
     }
 
-    // BasicLevel - 서비스 ID + 그룹 Path
-    @RequestMapping(path = "/path/{path}/serviceid/{serviceSequence}", method = RequestMethod.GET)
+    @RequestMapping(path = "/partitionid/{partitionid}/path/{path}", method = RequestMethod.GET)
     public List<Tree> getTreeByPatitionSequenceAndTreePath(
-            @PathVariable int serviceSequence,
+            @PathVariable int partitionid,
             @PathVariable String path) throws Exception {
-        return treeService.findAllByPartitionSequenceAndTreePath(serviceSequence, path);
+        // TODO 동등(eq), 이상(gt), 이하(lt) 로직추가예정
+        return treeService.findAllByPartitionSequenceAndLessThanTreePathAndEnableFlag( partitionid, path, EnableFlag.Y.getValue() );
     }
 
-    // BasicLevel - 서비스 ID + TreeLevel
-    @RequestMapping(path = "/level/{level}/serviceid/{serviceSequence}", method = RequestMethod.GET)
-    public List<Tree> getTreeByPartitionSequenceAndTreeLevel (
-            @PathVariable int serviceSequence,
-            @PathVariable int level) throws Exception {
-        return treeService.findAllByPartitionSequenceAndTreeLevel(serviceSequence, level);
-    }
-
-    // AdminLevel - 그룹 저장
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> saveGroup(
+    public ResponseEntity<Void> saveTree(
             @Validated @RequestBody TreeResource treeResource,
             UriComponentsBuilder uriBuilder) throws Exception {
-        System.out.println(treeResource.toString()); // TODO LOG
-        Tree tree = treeService.save(treeResource.toInsert().toEntity()); // TODO NO_ID
-        System.out.println(tree.toString()); // TODO LOG
+        Tree tree = treeService.save(treeResource.toInsert().toEntity());
 
         URI resourceUri = MvcUriComponentsBuilder
                 .relativeTo(uriBuilder)
@@ -82,11 +68,16 @@ public class TreeController {
         return ResponseEntity.created(resourceUri).build();
     }
 
-    // AdminLevel - 그룹 수정
-    @RequestMapping(method = RequestMethod.PUT)
-    public Tree updateGroup(@PathVariable int sequence) throws Exception {
-        return null;
+    @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.PUT)
+    public void updateTree(
+            @PathVariable int sequence,
+            @Validated @RequestBody TreeResource treeResource) throws Exception {
+        treeService.updateBySequence(sequence, treeResource.toUpdate().toEntity());
     }
 
+    @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.DELETE)
+    public void deleteTree(@PathVariable int sequence) throws Exception {
+        treeService.unenable(sequence);
+    }
 
 }
