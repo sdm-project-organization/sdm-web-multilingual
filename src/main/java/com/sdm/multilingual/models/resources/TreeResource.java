@@ -2,7 +2,6 @@ package com.sdm.multilingual.models.resources;
 
 import com.sdm.multilingual.constants.ActiveFlag;
 import com.sdm.multilingual.constants.EnableFlag;
-import com.sdm.multilingual.models.tables.Partition;
 import com.sdm.multilingual.models.tables.Tree;
 import com.sdm.multilingual.utils.StringUtil;
 import com.sdm.multilingual.utils.TreeUtil;
@@ -14,10 +13,10 @@ import java.util.List;
 @Data
 public class TreeResource extends CommonResource<Tree, TreeResource> implements Serializable {
 
-    private int partitionSequence;
+    private Integer partitionSequence;
     private String treeCode;
     private String treePath;
-    private int treeLevel;
+    private Integer treeLevel;
     private List<String> listOfCode;
 
     @Override
@@ -43,7 +42,10 @@ public class TreeResource extends CommonResource<Tree, TreeResource> implements 
 
     @Override
     public TreeResource toUpdate() {
-        return null;
+        setSequence(CommonResource.INIT_SEQUENCE);
+        setPartitionSequence(1); // TODO TEMP
+
+        return this;
     }
 
     @Override
@@ -59,7 +61,6 @@ public class TreeResource extends CommonResource<Tree, TreeResource> implements 
         tree.setDesc(this.getDesc());
         tree.setActiveFlag(this.getActiveFlag());
         tree.setEnableFlag(this.getEnableFlag());
-        System.out.println(tree.toString()); // TODO LOG
         return tree;
     }
 

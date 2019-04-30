@@ -96,13 +96,16 @@ public class TreeServiceImpl implements TreeService {
             throw new Exception(); // TODO
 
         // 2.연결고리체크
-        List<Tree> greaterThanTrees = findAllByPartitionSequenceAndGreaterThanTreePathAndEnableFlag(
-                tree.getPartitionSequence(), tree.getTreePath(), EnableFlag.Y.getValue());
 
-        /*Tree greaterThanTrees = findByPartitionSequenceAndEqualTreePathAndEnableFlag(
-                tree.getPartitionSequence(), TreeUtil.getNextGreaterThanTreePath(tree.getTreePath()), EnableFlag.Y.getValue());*/
+        // 전체체크
+        /*List<Tree> greaterThanTrees = findAllByPartitionSequenceAndGreaterThanTreePathAndEnableFlag(
+                tree.getPartitionSequence(), tree.getTreePath(), EnableFlag.Y.getValue());*/
 
-        if(greaterThanTrees.size() != tree.getTreeLevel() - 1)
+        // 상위체크
+        Tree greaterThanTree = findByPartitionSequenceAndEqualTreePathAndEnableFlag(
+                tree.getPartitionSequence(), TreeUtil.getNextGreaterThanTreePath(tree.getTreePath()), EnableFlag.Y.getValue());
+
+        if(greaterThanTree == null)
             throw new Exception(); // TODO
 
         return treeRepository.save(tree);
@@ -114,7 +117,15 @@ public class TreeServiceImpl implements TreeService {
     }
 
     @Override
-    public void updateBySequence(int sequence, Tree tree) {
+    public void updateBySequence(int sequence, Tree tree) throws Exception {
+        // TODO Transaction
+
+        Tree toTree = findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
+        if(toTree == null)
+            throw new NotFoundException(StringUtil.getExceptionMessage(this,"NOT_FOUNT"));
+
+        // TODO 1. 하위트리변경 2. 관련노드변경
+
 
     }
 

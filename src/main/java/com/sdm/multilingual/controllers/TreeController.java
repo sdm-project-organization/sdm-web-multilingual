@@ -1,7 +1,6 @@
 package com.sdm.multilingual.controllers;
 
 import com.sdm.multilingual.constants.EnableFlag;
-import com.sdm.multilingual.models.resources.PartitionResource;
 import com.sdm.multilingual.models.resources.TreeResource;
 import com.sdm.multilingual.models.tables.Tree;
 import com.sdm.multilingual.services.TreeServiceImpl;

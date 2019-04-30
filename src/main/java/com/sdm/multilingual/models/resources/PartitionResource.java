@@ -26,6 +26,7 @@ public class PartitionResource extends CommonResource<Partition, PartitionResour
 
     @Override
     public PartitionResource toUpdate() {
+        setSequence(CommonResource.INIT_SEQUENCE);
         setServiceSequence(1); // TODO AUTOMATIC
         return this;
     }
