@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "DICT_PARTITION_TB")
-@EntityListeners(value = { AuditingEntityListener.class })
+@EntityListeners(value = {AuditingEntityListener.class})
 @Data
 public class Partition {
 
-    public static final String[] CANNOT_UPDATED_FIELDS = new String[] {"sequence", "createdDate", "writer", "updatedDate", "editor"};
+    public static final String[] CANNOT_UPDATED_FIELDS = new String[]{"sequence", "createdDate", "writer", "updatedDate", "editor"};
 
     @Id
     @Column(name = "partition_sq", nullable = false, updatable = false)

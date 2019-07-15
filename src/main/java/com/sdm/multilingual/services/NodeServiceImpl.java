@@ -27,7 +27,7 @@ public class NodeServiceImpl implements NodeServicce {
 
     @Override
     public Node findBySequence(int sequence) {
-        return nodeRepository.findBySequence( sequence );
+        return nodeRepository.findBySequence(sequence);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class NodeServiceImpl implements NodeServicce {
     @Override
     public void updateBySequence(int sequence, Node fromNode) throws Exception {
         Node toNode = findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
-        if(toNode == null)
+        if (toNode == null)
             throw new NotFoundException(StringUtil.getExceptionMessage(this, "NOT_FOUNT"));
 
         SystemUtil.moveEntityToEntity(Node.CANNOT_UPDATED_FIELDS, Node.class, fromNode, toNode);
@@ -100,8 +100,8 @@ public class NodeServiceImpl implements NodeServicce {
     @Override
     public void unenable(int sequence) throws Exception {
         Node node = findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
-        if(node == null)
-            throw new NotFoundException(StringUtil.getExceptionMessage(this,"NOT_FOUNT"));
+        if (node == null)
+            throw new NotFoundException(StringUtil.getExceptionMessage(this, "NOT_FOUNT"));
 
         node.setEnableFlag(EnableFlag.N.getValue());
         nodeRepository.flush();

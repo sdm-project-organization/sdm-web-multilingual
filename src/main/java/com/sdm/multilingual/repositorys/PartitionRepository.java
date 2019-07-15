@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PartitionRepository extends JpaRepository<Partition,String>, CommonRepository<Partition> {
+public interface PartitionRepository extends JpaRepository<Partition, String>, CommonRepository<Partition> {
 
     // service_sequence
 

@@ -14,12 +14,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "DICT_TREE_TB")
-@EntityListeners(value = { AuditingEntityListener.class })
+@EntityListeners(value = {AuditingEntityListener.class})
 @Data
 public class Tree {
 
-    public static final String[] CANNOT_UPDATED_FIELDS = new String[] { "sequence", "createdDate", "writer", "updatedDate", "editor" };
-    public static final String[] CANNOT_NULLABLE_FIELDS = new String[] { "partitionSequence", "treeCode" };
+    public static final String[] CANNOT_UPDATED_FIELDS = new String[]{"sequence", "createdDate", "writer", "updatedDate", "editor"};
+    public static final String[] CANNOT_NULLABLE_FIELDS = new String[]{"partitionSequence", "treeCode"};
 
     @Id
     @Column(name = "tree_sq", updatable = false, nullable = false)

@@ -6,8 +6,7 @@ public class StringUtil {
 
     /**
      * Exception Message 생성자
-     *
-     * */
+     */
     public static String getExceptionMessage(Object objClass, String message) {
         return String.format(
                 "%s - %s : %s",

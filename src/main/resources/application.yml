@@ -1,0 +1,64 @@
+#server
+server:
+  port: 11001
+
+# spring
+spring:
+  profiles:
+    active: default
+  application:
+    name: dict
+  # The bean 'dataSource', defined in BeanDefinition defined in class path resource
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/DICT?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+
+---
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: dict
+  # The bean 'dataSource', defined in BeanDefinition defined in class path resource
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/DICT?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+
+#  cloud:
+#    config:
+#      enabled: true
+#    refresh:
+#      refreshable: none
+
+# eureka
+#eureka:
+#  instance:
+#    preferIpAddress: true
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://localhost:12001/eureka/

@@ -12,6 +12,7 @@
     <artifactId>dict</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>dict</name>
+    <packaging>war</packaging>
     <description>multilingual API Web Application</description>
 
     <properties>
@@ -33,22 +34,22 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot : JPA -->
+        <!-- Spring Boot : JPA (JDBC Driver 포함)-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <!-- Spring Boot : JDBC Driver -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--</dependency>-->
 
         <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>
-            <artifactId> mysql-connector-java</artifactId>
+            <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
 
@@ -73,11 +74,18 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Cloud : eureka client -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+            <!--<version>2.0.0.RELEASE</version>-->
+        <!--</dependency>-->
+
         <!-- Apache Commons-DBCP -->
         <!--<dependency>-->
-            <!--<groupId>org.apache.commons</groupId>-->
-            <!--<artifactId>commons-dbcp2</artifactId>-->
-            <!--<version>2.4.0</version>-->
+        <!--<groupId>org.apache.commons</groupId>-->
+        <!--<artifactId>commons-dbcp2</artifactId>-->
+        <!--<version>2.4.0</version>-->
         <!--</dependency>-->
 
         <!-- Session -->

@@ -24,18 +24,18 @@ public class PartitionController {
     PartitionServiceImpl partitionService;
 
     @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.GET)
-    public Partition getPartitionBySequence( @PathVariable int sequence ) throws Exception {
-        return partitionService.findBySequenceAndEnableFlag( sequence, EnableFlag.Y.getValue() );
+    public Partition getPartitionBySequence(@PathVariable int sequence) throws Exception {
+        return partitionService.findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(path = "/name/{name}", method = RequestMethod.GET)
-    public List<Partition> getPartitionByDisplayName( @PathVariable String name ) throws Exception {
-        return partitionService.findAllByDisplayNameAndEnableFlag( name, EnableFlag.Y.getValue() );
+    public List<Partition> getPartitionByDisplayName(@PathVariable String name) throws Exception {
+        return partitionService.findAllByDisplayNameAndEnableFlag(name, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(path = "/serviceid/{sequence}", method = RequestMethod.GET)
-    public List<Partition> getPartitionByServiceSequence( @PathVariable int sequence ) throws Exception {
-        return partitionService.findAllByServiceSequenceAndEnableFlag( sequence, EnableFlag.Y.getValue() );
+    public List<Partition> getPartitionByServiceSequence(@PathVariable int sequence) throws Exception {
+        return partitionService.findAllByServiceSequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(method = RequestMethod.POST)

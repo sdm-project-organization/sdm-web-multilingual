@@ -26,13 +26,13 @@ public class NodeController {
     NodeServiceImpl nodeService;
 
     @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.GET)
-    public Node getNodeBySequence(@PathVariable int sequence ) throws Exception {
-        return nodeService.findBySequenceAndEnableFlag( sequence, EnableFlag.Y.getValue() );
+    public Node getNodeBySequence(@PathVariable int sequence) throws Exception {
+        return nodeService.findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(path = "/name/{name}", method = RequestMethod.GET)
-    public List<Node> getNodeByDisplayName(@PathVariable String name ) throws Exception {
-        return nodeService.findAllByDisplayNameAndEnableFlag( name, EnableFlag.Y.getValue() );
+    public List<Node> getNodeByDisplayName(@PathVariable String name) throws Exception {
+        return nodeService.findAllByDisplayNameAndEnableFlag(name, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(method = RequestMethod.POST)

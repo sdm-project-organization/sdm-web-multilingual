@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TreeRepository extends JpaRepository<Tree,String>, CommonRepository<Tree>  {
+public interface TreeRepository extends JpaRepository<Tree, String>, CommonRepository<Tree> {
 
 
     // findAll by paritionSequence & name & enableFlag
     List<Tree> findAllByPartitionSequenceAndDisplayNameAndEnableFlag(int paritionSequence, String displayName, byte enableFlag);
-    
+
     // findAll by partitionSequence & treeLevel & enableFlag
     List<Tree> findAllByPartitionSequenceAndTreeLevelAndEnableFlag(int paritionSequence, int treeLevel, byte enableFlag);
 
@@ -28,5 +28,5 @@ public interface TreeRepository extends JpaRepository<Tree,String>, CommonReposi
     // findAll by partitionSequence & treePath (GreaterThan) & enableFlag
     // @Query("SELECT t FROM DICT_TREE_TB t WHERE g.partition_sq = :partitionSequence AND t.tree_path IN (:treePaths) AND t.enable_fl = :enableFlag")
     List<Tree> findAllByPartitionSequenceAndTreePathInAndEnableFlag(int partitionSequence, List<String> treePaths, byte enableFlag);
-    
+
 }

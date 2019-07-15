@@ -29,13 +29,13 @@ public interface CommonService<T> {
 
     // save
 
-    T save(T tree) throws Exception;
+    T save(T obj) throws Exception;
 
     List<T> saveAll(List<T> list);
 
     // update
 
-    void updateBySequence(int sequence, T tree) throws Exception;
+    void updateBySequence(int sequence, T obj) throws Exception;
 
     void active(int sequence);
 

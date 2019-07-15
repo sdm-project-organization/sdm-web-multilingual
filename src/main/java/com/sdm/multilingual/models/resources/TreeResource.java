@@ -25,11 +25,11 @@ public class TreeResource extends CommonResource<Tree, TreeResource> implements 
         setPartitionSequence(1); // TODO TEMP
 
         // 1. null 체크
-        if(getTreeCode() == null || getTreeCode() == "")
+        if (getTreeCode() == null || getTreeCode() == "")
             throw new Exception();
 
         // 2. 문자열 체크
-        if(getTreeCode().contains(String.valueOf(StringUtil.DELIMETER_OF_PATH)))
+        if (getTreeCode().contains(String.valueOf(StringUtil.DELIMETER_OF_PATH)))
             throw new Exception();
 
         listOfCode.add(getTreeCode());

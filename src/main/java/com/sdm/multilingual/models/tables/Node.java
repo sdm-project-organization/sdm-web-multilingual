@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "DICT_NODE_TB")
-@EntityListeners(value = { AuditingEntityListener.class })
+@EntityListeners(value = {AuditingEntityListener.class})
 @Data
 public class Node {
 
-    public static final String[] CANNOT_UPDATED_FIELDS = new String[] {"sequence", "createdDate", "writer", "updatedDate", "editor"};
+    public static final String[] CANNOT_UPDATED_FIELDS = new String[]{"sequence", "createdDate", "writer", "updatedDate", "editor"};
 
     @Id
     @Column(name = "node_sq", nullable = false, updatable = false)
@@ -32,9 +32,6 @@ public class Node {
 
     @Column(name = "txt0")
     public String txt0;
-
-    // =====================================================
-    // Common
 
     @Column(name = "disp_ord")
     public Integer displayOrder;
@@ -66,7 +63,5 @@ public class Node {
     @LastModifiedBy
     @Column(name = "editor")
     public String editor;
-
-    // =====================================================
 
 }

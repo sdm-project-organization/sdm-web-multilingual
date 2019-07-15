@@ -75,10 +75,10 @@ public class PartitionServiceImpl implements PartitionService {
     }
 
     @Override
-    public void updateBySequence( int sequence, Partition fromPartition ) throws Exception {
+    public void updateBySequence(int sequence, Partition fromPartition) throws Exception {
         Partition toPartition = findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
-        if(toPartition == null)
-            throw new NotFoundException(StringUtil.getExceptionMessage(this,"NOT_FOUNT"));
+        if (toPartition == null)
+            throw new NotFoundException(StringUtil.getExceptionMessage(this, "NOT_FOUNT"));
 
         SystemUtil.moveEntityToEntity(Partition.CANNOT_UPDATED_FIELDS, Partition.class, fromPartition, toPartition);
         partitionRepository.flush();
@@ -112,8 +112,8 @@ public class PartitionServiceImpl implements PartitionService {
     @Override
     public void unenable(int sequence) throws Exception {
         Partition partition = findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
-        if(partition == null)
-            throw new NotFoundException(StringUtil.getExceptionMessage(this,"NOT_FOUNT"));
+        if (partition == null)
+            throw new NotFoundException(StringUtil.getExceptionMessage(this, "NOT_FOUNT"));
 
         partition.setEnableFlag(EnableFlag.N.getValue());
         partitionRepository.flush();

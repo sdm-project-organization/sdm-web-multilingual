@@ -1,4 +1,5 @@
 package com.sdm.multilingual.repositorys;
+
 import com.sdm.multilingual.models.tables.CommonTable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

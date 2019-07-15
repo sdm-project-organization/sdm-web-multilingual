@@ -23,27 +23,27 @@ public class TreeController {
     @Autowired
     TreeServiceImpl treeService;
 
-    @RequestMapping(path="count", method = RequestMethod.GET)
+    @RequestMapping(path = "count", method = RequestMethod.GET)
     public long getTreeCount() {
         return treeService.count();
     }
 
     @RequestMapping(path = "/sequence/{sequence}", method = RequestMethod.GET)
-    public Tree getTreeBySequence( @PathVariable int sequence ) throws Exception {
-        return treeService.findBySequenceAndEnableFlag( sequence, EnableFlag.Y.getValue() );
+    public Tree getTreeBySequence(@PathVariable int sequence) throws Exception {
+        return treeService.findBySequenceAndEnableFlag(sequence, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(path = "/name/{name}", method = RequestMethod.GET)
     public List<Tree> getTreeByDisplayName(
             @PathVariable String name) throws Exception {
-        return treeService.findAllByDisplayNameAndEnableFlag( name, EnableFlag.Y.getValue() );
+        return treeService.findAllByDisplayNameAndEnableFlag(name, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(path = "/partitionid/{partitionid}/name/{name}", method = RequestMethod.GET)
     public List<Tree> getTreeBySerivceSequenceAndDisplayName(
             @PathVariable int partitionid,
             @PathVariable String name) throws Exception {
-        return treeService.findAllByPartitionSequenceAndDisplayNameAndEnableFlag( partitionid, name, EnableFlag.Y.getValue() );
+        return treeService.findAllByPartitionSequenceAndDisplayNameAndEnableFlag(partitionid, name, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(path = "/partitionid/{partitionid}/path/{path}", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class TreeController {
             @PathVariable int partitionid,
             @PathVariable String path) throws Exception {
         // TODO 동등(eq), 이상(gt), 이하(lt) 로직추가예정
-        return treeService.findAllByPartitionSequenceAndLessThanTreePathAndEnableFlag( partitionid, path, EnableFlag.Y.getValue() );
+        return treeService.findAllByPartitionSequenceAndLessThanTreePathAndEnableFlag(partitionid, path, EnableFlag.Y.getValue());
     }
 
     @RequestMapping(method = RequestMethod.POST)
