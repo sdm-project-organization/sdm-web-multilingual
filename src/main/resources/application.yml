@@ -13,7 +13,7 @@ spring:
     allow-bean-definition-overriding: true
   datasource:
     # mo.avocadostudio.xyz
-    url: jdbc:mysql://210.90.135.104:3306/dict?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://210.90.135.104:3306/DICT?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
