@@ -1,7 +1,6 @@
 
-##### DEFAULT #####
+# ====================== DEFAULT ======================
 
-# spring
 spring:
   profiles: default
   application:
@@ -24,20 +23,20 @@ spring:
         show_sql: true
 
 server:
-  port: 11001
+  port: 9871
 
 eureka:
   instance:
-    preferIpAddress: true
+    hostname: localhost
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://dev.avocadostudio.xyz:12002/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
 
 ---
 
-##### DEV #####
+# ====================== DEV ======================
 
 spring:
   profiles: dev
@@ -61,16 +60,16 @@ spring:
         show_sql: true
 
 server:
-  port: 8080
+  port: 9871
 
 eureka:
   instance:
-    preferIpAddress: true
+    hostname: dev.avocadostudio.xyz
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://dev.avocadostudio.xyz:12002/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
 
 #  cloud:
 #    config:

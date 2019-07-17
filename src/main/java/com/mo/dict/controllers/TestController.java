@@ -9,9 +9,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping(value = "/api/items")
-public class TestItemController {
+public class TestController {
 
     Map<String, Item> itemRepo = new HashMap();
 
@@ -22,10 +21,6 @@ public class TestItemController {
         int itemCount = 0;
     }
 
-    @RequestMapping(value = "/{itemId}", method= RequestMethod.GET)
-    public Item getItem(@PathVariable String itemId) {
-        return itemRepo.get(itemId);
-    }
 
     @RequestMapping(method= RequestMethod.GET)
     public Collection<Item> getItems() {
@@ -38,6 +33,11 @@ public class TestItemController {
         newItem.setItemId(newItemId);
         itemRepo.put(newItemId, newItem);
         return newItem;
+    }
+
+    @RequestMapping(value = "/{itemId}", method= RequestMethod.GET)
+    public Item getItem(@PathVariable String itemId) {
+        return itemRepo.get(itemId);
     }
 
     @RequestMapping(value = "/{itemId}", method= RequestMethod.PUT)
