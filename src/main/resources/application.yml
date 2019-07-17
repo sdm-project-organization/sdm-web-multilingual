@@ -1,11 +1,9 @@
-#server
-server:
-  port: 11001
+
+##### DEFAULT #####
 
 # spring
 spring:
-  profiles:
-    active: default
+  profiles: default
   application:
     name: dict
   # The bean 'dataSource', defined in BeanDefinition defined in class path resource
@@ -25,11 +23,24 @@ spring:
       hibernate:
         show_sql: true
 
+server:
+  port: 11001
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://dev.avocadostudio.xyz:12002/eureka/
+
 ---
 
+##### DEV #####
+
 spring:
-  profiles:
-    active: dev
+  profiles: dev
   application:
     name: dict
   # The bean 'dataSource', defined in BeanDefinition defined in class path resource
@@ -37,7 +48,7 @@ spring:
     allow-bean-definition-overriding: true
   datasource:
     # mo.avocadostudio.xyz
-    url: jdbc:mysql://210.90.135.104:3306/dict?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://210.90.135.104:3306/DICT?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -48,6 +59,18 @@ spring:
     properties:
       hibernate:
         show_sql: true
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://dev.avocadostudio.xyz:12002/eureka/
 
 #  cloud:
 #    config:

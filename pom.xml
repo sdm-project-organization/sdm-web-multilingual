@@ -8,12 +8,12 @@
         <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.sdm</groupId>
+    <groupId>com.mo</groupId>
     <artifactId>dict</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>dict</name>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <description>multilingual API Web Application</description>
+    <description>dict</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -99,6 +99,13 @@
         <!--<groupId>org.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-cache</artifactId>-->
         <!--</dependency>-->
+
+        <!-- Spring Cloud : Discovery Client-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
 
     </dependencies>
 
