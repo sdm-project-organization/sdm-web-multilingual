@@ -1,4 +1,28 @@
 
+server:
+  port: 9871
+
+signing:
+  key: "345345fsdgsf5345"
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: DEBUG
+    com.mo: DEBUG
+
+env:
+  host:
+    local: localhost
+    dev: dev.avocadostudio.xyz
+  db:
+    local:
+      port: 3306
+      schema: DICT
+    dev:
+      port: 3306
+      schema: DICT
+
 # ====================== DEFAULT ======================
 
 spring:
@@ -9,8 +33,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    # mo.avocadostudio.xyz
-    url: jdbc:mysql://210.90.135.104:3306/DICT?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://${env.host.dev}:${env.db.dev.port}/${env.db.dev.schema}?verifyServerCertificate=false&useSSL=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -22,17 +45,19 @@ spring:
       hibernate:
         show_sql: true
 
-server:
-  port: 9871
-
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${env.host.local}
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://${env.host.local}:8090/user
 
 ---
 
@@ -46,8 +71,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    # mo.avocadostudio.xyz
-    url: jdbc:mysql://210.90.135.104:3306/DICT?verifyServerCertificate=false&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://${env.host.dev}:${env.db.dev.port}/${env.db.dev.schema}?verifyServerCertificate=false&useSSL=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -59,30 +83,16 @@ spring:
       hibernate:
         show_sql: true
 
-server:
-  port: 9871
-
 eureka:
   instance:
-    hostname: dev.avocadostudio.xyz
+    hostname: ${env.host.dev}
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
 
-#  cloud:
-#    config:
-#      enabled: true
-#    refresh:
-#      refreshable: none
-
-# eureka
-#eureka:
-#  instance:
-#    preferIpAddress: true
-#  client:
-#    registerWithEureka: true
-#    fetchRegistry: true
-#    serviceUrl:
-#      defaultZone: http://localhost:12001/eureka/
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://${env.host.dev}:8090/user

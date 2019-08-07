@@ -34,17 +34,39 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Spring Cloud : Discovery Client-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+
+        <!-- Spring Cloud : Security -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-security</artifactId>-->
+            <!--<version>2.1.2.RELEASE</version>-->
+        <!--</dependency>-->
+
+        <!-- Spring Security : Oauth2 -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security.oauth</groupId>-->
+            <!--<artifactId>spring-security-oauth2</artifactId>-->
+            <!--<version>2.2.2.RELEASE</version>-->
+        <!--</dependency>-->
+
+        <!-- Spring : Security JWT -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security</groupId>-->
+            <!--<artifactId>spring-security-jwt</artifactId>-->
+            <!--<version>1.0.9.RELEASE</version>-->
+        <!--</dependency>-->
+
         <!-- Spring Boot : JPA (JDBC Driver 포함)-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
-        <!-- Spring Boot : JDBC Driver -->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
-        <!--</dependency>-->
 
         <!-- MySQL -->
         <dependency>
@@ -72,39 +94,6 @@
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Spring Cloud : eureka client -->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-            <!--<version>2.0.0.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!-- Apache Commons-DBCP -->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.commons</groupId>-->
-        <!--<artifactId>commons-dbcp2</artifactId>-->
-        <!--<version>2.4.0</version>-->
-        <!--</dependency>-->
-
-        <!-- Session -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.session</groupId>-->
-        <!--<artifactId>spring-session-core</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- Spring Boot : Cache -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-cache</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- Spring Cloud : Discovery Client-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>2.0.2.RELEASE</version>
         </dependency>
 
     </dependencies>

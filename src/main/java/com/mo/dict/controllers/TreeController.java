@@ -17,7 +17,7 @@ import java.util.List;
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.on;
 
 @RestController
-@RequestMapping("/api/trees")
+@RequestMapping("trees")
 public class TreeController {
 
     @Autowired

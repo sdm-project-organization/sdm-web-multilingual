@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/api/items")
+@RequestMapping("items")
 public class TestController {
 
     Map<String, Item> itemRepo = new HashMap();
